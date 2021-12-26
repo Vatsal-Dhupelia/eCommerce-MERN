@@ -14,9 +14,26 @@ class ApiFeatures {
 
         } : {};
 
-        console.log(keyword);
         this.query = this.query.find({...keyword});
         return this;
+    }
+    
+    filter(){
+        const queryCopy = {...this.queryStr}
+        
+        // Removing Some Field for Category
+        const removeFields = ["keyword", "page", "limit"];
+        removeFields.forEach((key)=>delete queryCopy[key])
+        
+        
+        // Filter for Price and Rating
+
+        let queryStr = JSON.stringify(queryCopy);
+        queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, key => `$${key}`);
+
+        this.query = this.query.find(JSON.parse(queryStr))
+        return this;
+          
     }
 };
 
