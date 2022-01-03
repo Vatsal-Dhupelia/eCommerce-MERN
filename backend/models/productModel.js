@@ -65,7 +65,7 @@ const productSchema = mongoose.Schema({
                 required: true
             },
 
-            reating: {
+            rating: {
                 type: Number,
                 required: true
             },
