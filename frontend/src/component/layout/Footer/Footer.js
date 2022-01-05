@@ -8,13 +8,10 @@ const Footer = () => {
     return (
         <footer id='footer'>
             <div className="leftFooter">
-                <h4>DOWNLOAD OUR APP</h4>
-                <p>Download App for Android and IOS</p>
-                <img id='img1' src={playStore} alt="playStore" />
-                <img id='img2' src={appStore} alt="appStore" />
+            <h1>eCart</h1>
             </div>
             <div className="midFooter">
-                <h1>eCart</h1>
+                
                 <p>We Believe in Quality</p>
                 <p>Copyrights 2021 &copy; eCart</p>
 
