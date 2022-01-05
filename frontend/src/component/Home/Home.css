@@ -1,0 +1,38 @@
+.banner{
+    background-image: linear-gradient(to right, #222, #1f4147);
+    height: 697px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.banner h1{
+    padding-bottom: 20px;
+    font: 600 75px "Roboto";
+    letter-spacing: 3px;
+}
+.banner h2{
+    font: 600 2.5vmax "Roboto";
+    padding-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.banner a button{
+    margin-bottom: 5vmax;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 0;
+    padding: 1vmax;
+    transition: all 0.5s;
+    width: 9vmax;
+    font: 500 1vmax "Roboto";  
+}
+
+.banner a button:hover{
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+}
