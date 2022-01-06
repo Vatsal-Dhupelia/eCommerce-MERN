@@ -6,7 +6,7 @@ const options = {
     edit: false,
     color: "rgba(20, 20, 20, 0.1)",
     activeColor: "tomato",
-    size: window.innerWidth < 600 ? 20 : 25,
+    size: window.innerWidth > 600 ? 25 : 13,
     value: 2.5,
     isHalf: true
 }
