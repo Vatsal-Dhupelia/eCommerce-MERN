@@ -18,9 +18,9 @@ const Footer = () => {
             </div>
             <div className="rightFooter">
                 <h4>Follow Us </h4>
-                <a href="#" class="fa fa-facebook"></a>
-                <a href="#" class="fa fa-youtube"></a>
-                <a href="#" class="fa fa-instagram"></a>
+                <a href="#" className="fa fa-facebook"></a>
+                <a href="#" className="fa fa-youtube"></a>
+                <a href="#" className="fa fa-instagram"></a>
 
 
             </div>
