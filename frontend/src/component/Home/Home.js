@@ -5,16 +5,9 @@ import MetaData from '../layout/MetaData'
 import {getProduct} from "../../actions/productAction"
 import {useSelector, useDispatch} from "react-redux"
 
-const product = {
-    name: "Blue Tshirt",
-    images: [{url: "https://i.ibb.co/DRST11n/1.webp"}],
-    price: "₹3000",
-    _id: "Vatsal"
-}
-
-
 const Home = () => {
     const dispatch = useDispatch()
+    const {loading, error, products, productsCount} = useSelector((state) => state.products)
     useEffect(() => {
         dispatch(getProduct());
     }, [dispatch])
@@ -35,15 +28,9 @@ const Home = () => {
             </h2>
 
             <div className="container" id='container'>
-                <Product product = {product}/>
-                <Product product = {product}/>
-                <Product product = {product}/>
-                <Product product = {product}/>
-
-                <Product product = {product}/>
-                <Product product = {product}/>
-                <Product product = {product}/>
-                <Product product = {product}/>
+                {products && products.map(product => (
+                    <Product product = {product}/>
+                ))}
                 
             </div>
         </>
