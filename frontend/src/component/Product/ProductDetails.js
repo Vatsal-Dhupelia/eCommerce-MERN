@@ -6,7 +6,7 @@ import { clearErrors, getProductDetails } from '../../actions/productAction';
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js"
 import Loader from "../layout/Loader/Loader"
-import {useAlert} from "react-alert"
+import { useAlert } from "react-alert"
 
 
 const ProductDetails = ({ match }) => {
@@ -17,8 +17,12 @@ const ProductDetails = ({ match }) => {
     const { product, loading, error } = useSelector((state) => state.productDetails);
 
     useEffect(() => {
+        if (error) {
+            alert.error(error)
+            dispatch(clearErrors())
+        }
         dispatch(getProductDetails(match.params.id))
-    }, [dispatch, match.params.id])
+    }, [dispatch, match.params.id, alert, error])
 
     const options = {
         edit: false,
@@ -30,9 +34,9 @@ const ProductDetails = ({ match }) => {
     }
 
     return (
-        
-            <>
-                <div className='ProductDetails'>
+        <>
+            {loading ? <Loader /> : (<>
+                <div className="ProductDetails">
                     <div>
                         <Carousel>
                             {product.images &&
@@ -60,39 +64,46 @@ const ProductDetails = ({ match }) => {
                             <div className="detailsBlock-3-1">
                                 <div className="detailsBlock-3-1-1">
                                     <button>-</button>
-                                    <input value="1" type="number" />
-                                    <button>+</button>
+                                    <input type="number" />
+                                    <button >+</button>
                                 </div>
-                                <button>Add to Cart</button>
+                                <button>
+                                    Add to Cart
+                                </button>
                             </div>
+
                             <p>
-                                Status: {" "}
+                                Status:
                                 <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
-                                    {product.Stock < 1 ? "Out of Stock !" : "In Stock"}
+                                    {product.Stock < 1 ? "OutOfStock" : "InStock"}
                                 </b>
                             </p>
                         </div>
                         <div className="detailsBlock-4">
                             Description : <p>{product.description}</p>
                         </div>
-                        <button className='submitReview'>Submit Review</button>
+                        <button className="submitReview">
+                            Submit Review
+                        </button>
+
                     </div>
                 </div>
-                <h3 className="reviewsHeading">
-                    REVIEWS
-                </h3>
+
+                <h3 className="reviewsHeading">REVIEWS</h3>
                 {product.reviews && product.reviews[0] ? (
                     <div className="reviews">
-                        {product.reviews && product.reviews.map((review) => <ReviewCard review={review} />)}
+                        {product.reviews &&
+                            product.reviews.map((review) => (
+                                <ReviewCard review={review} />
+                            ))}
                     </div>
                 ) : (
                     <p className="noReviews">No Reviews Yet</p>
                 )}
+            </>)}
         </>
 
     )
 }
 
 export default ProductDetails
-
-// 06.30.01

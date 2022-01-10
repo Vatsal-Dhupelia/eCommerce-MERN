@@ -10,6 +10,7 @@ import Header from "./component/layout/Header/Header.js"
 import Footer from "./component/layout/Footer/Footer.js"
 import Home from './component/Home/Home.js'
 import ProductDetails from "./component/Product/ProductDetails.js"
+import ScrollToTop from './component/ScrollToTop';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
   return (
     <>
     <Router>
+      <ScrollToTop/>
       <Header/>
       <Route exact path="/" component={Home}/>
       <Route exact path="/product/:id" component={ProductDetails}/>
