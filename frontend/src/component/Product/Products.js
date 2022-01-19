@@ -5,14 +5,16 @@ import { clearErrors, getProduct } from '../../actions/productAction'
 import Loader from "../layout/Loader/Loader"
 import ProductCard from "../Home/ProductCard"
 
-const Products = () => {
+const Products = ({match}) => {
 
     const dispatch = useDispatch()
     const { products, loading, error, productsCount } = useSelector(state => state.products);
 
+    const keyword = match.params.keyword;
+
     useEffect(() => {
-        dispatch(getProduct());
-    }, [dispatch]);
+        dispatch(getProduct(keyword));
+    }, [dispatch, keyword]);
 
 
 
@@ -36,3 +38,5 @@ const Products = () => {
 }
 
 export default Products
+
+// 06.49.00
