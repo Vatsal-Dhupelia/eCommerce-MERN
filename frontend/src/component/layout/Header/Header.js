@@ -22,7 +22,7 @@ const Navbar = () => {
                             <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} aria-current="page" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} aria-current="page" to="/">Product</Link>
+                            <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} aria-current="page" to="/products">Products</Link>
                         </li>
                         <li className="nav-item">
                             <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} aria-current="page" to="/">Contact</Link>
