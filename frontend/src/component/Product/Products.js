@@ -7,6 +7,8 @@ import ProductCard from "../Home/ProductCard"
 import Pagination from "react-js-pagination"
 import Slider from "@material-ui/core/Slider"
 import Typography from '@material-ui/core/Typography'
+import {useAlert} from "react-alert"
+import MetaData from "../layout/MetaData"
 
 
 const categories = [
@@ -23,11 +25,15 @@ const Products = ({match}) => {
 
     const dispatch = useDispatch()
 
+    const alert = useAlert()
+
     const [currentPage, setCurrentPage] = useState(1);
 
     const [price, setPrice] = useState([0, 25000]);
 
     const [category, setCategory] = useState("");
+
+    const [ratings, setRatings] = useState(0);
 
     const { products, loading, error, productsCount, resultPerPage, filteredProductsCount } = useSelector(state => state.products);
 
@@ -42,8 +48,12 @@ const Products = ({match}) => {
     }
 
     useEffect(() => {
-        dispatch(getProduct(keyword, currentPage, price, category));
-    }, [dispatch, keyword, currentPage, price, category]);
+        if(error){
+            alert.error(error)
+            dispatch(clearErrors())
+        }
+        dispatch(getProduct(keyword, currentPage, price, category, ratings));
+    }, [dispatch, keyword, currentPage, price, category, ratings, alert, error]);
 
     let count = filteredProductsCount;
 
@@ -52,6 +62,7 @@ const Products = ({match}) => {
             {
                 loading ? <Loader /> :
                     <>
+                        <MetaData title="eCart - Products"/>
                         <h2 className='productsHeading'>Products</h2>
                         <div className="products">
                             {
@@ -88,6 +99,22 @@ const Products = ({match}) => {
                                     </li>
                                 ))}
                             </ul>
+
+                            <fieldset>
+                                <Typography component="legend">
+                                    Ratings Above
+                                </Typography>
+                                <Slider
+                                    value={ratings}
+                                    onChange={(e, newRating) => {
+                                        setRatings(newRating);
+                                    }}
+                                    aria-labelledby="continuous-slider"
+                                    min={0}
+                                    max={5}
+                                    valueLabelDisplay="auto"
+                                />
+                            </fieldset>
                         </div>
 
                         {
